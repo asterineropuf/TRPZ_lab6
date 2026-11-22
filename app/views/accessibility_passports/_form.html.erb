@@ -1,0 +1,30 @@
+<%= form_with(model: [@place, @passport], url: place_accessibility_passport_path(@place), class: "card shadow-sm border-0") do |f| %>
+  <div class="card-body row g-3">
+    <div class="col-md-4">
+      <%= f.label :ramp_angle, "Кут нахилу пандуса (°)", class: "form-label fw-semibold" %>
+      <%= f.number_field :ramp_angle, step: 0.1, class: "form-control" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= f.label :door_width_cm, "Ширина вхідних дверей (см)", class: "form-label fw-semibold" %>
+      <%= f.number_field :door_width_cm, class: "form-control" %>
+    </div>
+
+    <div class="col-md-4 d-flex align-items-end">
+      <div class="form-check mb-2">
+        <%= f.check_box :has_elevator, class: "form-check-input" %>
+        <%= f.label :has_elevator, "Наявний ліфт / підйомник", class: "form-check-label" %>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <%= f.label :hazard_gutters_note, "Примітка щодо зливових жолобів та перешкод", class: "form-label fw-semibold" %>
+      <%= f.text_area :hazard_gutters_note, rows: 2, class: "form-control" %>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+      <%= f.submit "Зберегти паспорт", class: "btn btn-primary" %>
+      <%= link_to "Назад до локації", @place, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+<% end %>

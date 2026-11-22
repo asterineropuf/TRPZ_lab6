@@ -1,0 +1,76 @@
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+  <div>
+    <h1 class="h3 mb-1"><%= @filter_title || "Реєстр локацій Івано-Франківська" %></h1>
+    <p class="text-muted mb-0">Знайдено об’єктів: <strong><%= @places.size %></strong></p>
+  </div>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-body">
+    <%= form_with url: places_path, method: :get, class: "row g-3 align-items-end" do |f| %>
+      <div class="col-md-5">
+        <%= f.label :q, "Пошук за назвою або адресою", class: "form-label small fw-semibold" %>
+        <%= f.text_field :q, value: params[:q], placeholder: "Наприклад: Ратуша, Незалежності...", class: "form-control" %>
+      </div>
+
+      <div class="col-md-4">
+        <%= f.label :district_id, "Район міста", class: "form-label small fw-semibold" %>
+        <%= f.collection_select :district_id, @districts, :id, :name,
+                                { include_blank: "Усі райони", selected: params[:district_id] },
+                                { class: "form-select" } %>
+      </div>
+
+      <div class="col-md-3 d-flex gap-2">
+        <%= f.submit "Фільтрувати", class: "btn btn-primary w-100" %>
+        <%= link_to "Скинути", places_path, class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% @places.each do |place| %>
+    <div class="col">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <span class="badge bg-secondary-subtle text-secondary-emphasis"><%= place.category %></span>
+            <span class="badge bg-info-subtle text-info-emphasis">
+              <i class="bi bi-geo-alt me-1"></i><%= place.district&.name %>
+            </span>
+          </div>
+
+          <h2 class="h5 card-title mb-1">
+            <%= link_to place.name, place, class: "text-decoration-none text-dark stretched-link" %>
+          </h2>
+          <p class="text-muted small mb-3"><%= place.address %></p>
+
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <% if place.has_ramp %>
+              <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Пандус</span>
+            <% else %>
+              <span class="badge bg-danger-subtle text-danger-emphasis">Без пандуса</span>
+            <% end %>
+
+            <% if place.has_braille %>
+              <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>Шрифт Брайля</span>
+            <% end %>
+
+            <% if place.accessibility_passport.present? %>
+              <span class="badge bg-primary-subtle text-primary-emphasis">
+                <i class="bi bi-file-earmark-check me-1"></i>Паспорт доступності
+              </span>
+            <% end %>
+          </div>
+
+          <% if place.disability_types.any? %>
+            <div class="small text-muted">
+              <strong>Адаптовано для:</strong>
+              <%= place.disability_types.map(&:name).join(", ") %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,135 @@
+<%= form_with(model: place, class: "needs-validation") do |form| %>
+  <% if place.errors.any? %>
+    <div class="alert alert-danger">
+      <h6 class="alert-heading fw-bold">Виявлено помилки при збереженні (<%= place.errors.count %>):</h6>
+      <ul class="mb-0">
+        <% place.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-white fw-semibold">
+      <i class="bi bi-building me-1 text-primary"></i> Основна інформація про локацію
+    </div>
+    <div class="card-body row g-3">
+      <div class="col-md-6">
+        <%= form.label :name, "Назва об'єкта", class: "form-label fw-semibold" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Наприклад: ЦНАП м. Івано-Франківська" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :category, "Категорія", class: "form-label fw-semibold" %>
+        <%= form.select :category,
+                        ["Адміністративна будівля", "Медичний заклад", "Заклад освіти", "Транспортний вузол", "Громадський простір", "Заклад харчування"],
+                        { prompt: "Оберіть категорію..." },
+                        { class: "form-select" } %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :district_id, "Район міста (зв'язок 1:N)", class: "form-label fw-semibold" %>
+        <%= form.collection_select :district_id, District.order(:name), :id, :name,
+                                   { prompt: "Оберіть район..." },
+                                   { class: "form-select" } %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :address, "Адреса", class: "form-label fw-semibold" %>
+        <%= form.text_field :address, class: "form-control", placeholder: "вул. Незалежності, 9" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :latitude, "Широта (Latitude)", class: "form-label" %>
+        <%= form.number_field :latitude, step: :any, class: "form-control", placeholder: "48.9226" %>
+      </div>
+
+      <div class="col-md-6">
+        <%= form.label :longitude, "Довгота (Longitude)", class: "form-label" %>
+        <%= form.number_field :longitude, step: :any, class: "form-control", placeholder: "24.7111" %>
+      </div>
+
+      <div class="col-12">
+        <div class="form-check form-check-inline">
+          <%= form.check_box :has_ramp, class: "form-check-input" %>
+          <%= form.label :has_ramp, "Наявний пандус / безпороговий вхід", class: "form-check-label" %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= form.check_box :has_braille, class: "form-check-input" %>
+          <%= form.label :has_braille, "Наявні таблички шрифтом Брайля", class: "form-check-label" %>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <%= form.label :description, "Опис особливостей маршруту", class: "form-label" %>
+        <%= form.text_area :description, rows: 3, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-white fw-semibold">
+      <i class="bi bi-people me-1 text-primary"></i> Адаптація для категорій маломобільних груп (зв'язок M:N)
+    </div>
+    <div class="card-body">
+      <div class="row row-cols-1 row-cols-md-2 g-2">
+        <%= form.collection_check_boxes :disability_type_ids, DisabilityType.order(:name), :id, :name do |b| %>
+          <div class="col">
+            <div class="form-check">
+              <%= b.check_box(class: "form-check-input") %>
+              <%= b.label(class: "form-check-label") %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-white fw-semibold">
+      <i class="bi bi-clipboard2-pulse me-1 text-primary"></i> Паспорт безбар'єрності (вкладені атрибути 1:1)
+    </div>
+    <div class="card-body">
+      <%= form.fields_for :accessibility_passport do |pf| %>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <%= pf.label :ramp_angle, "Кут нахилу пандуса (°)", class: "form-label" %>
+            <%= pf.number_field :ramp_angle, step: 0.1, class: "form-control", placeholder: "Наприклад: 7.5" %>
+          </div>
+
+          <div class="col-md-4">
+            <%= pf.label :door_width_cm, "Ширина вхідних дверей (см)", class: "form-label" %>
+            <%= pf.number_field :door_width_cm, class: "form-control", placeholder: "Наприклад: 95" %>
+          </div>
+
+          <div class="col-md-4 d-flex align-items-end">
+            <div class="form-check mb-2">
+              <%= pf.check_box :has_elevator, class: "form-check-input" %>
+              <%= pf.label :has_elevator, "Наявний ліфт / підйомник", class: "form-check-label" %>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <%= pf.label :hazard_gutters_note, "Примітка щодо небезпечних зливових жолобів / перешкод", class: "form-label" %>
+            <%= pf.text_field :hazard_gutters_note, class: "form-control", placeholder: "Наприклад: Відкритий зливовий жолоб шириною 12 см перед входом" %>
+          </div>
+
+          <% if pf.object.persisted? %>
+            <div class="col-12">
+              <div class="form-check text-danger">
+                <%= pf.check_box :_destroy, class: "form-check-input" %>
+                <%= pf.label :_destroy, "Видалити паспорт безбар'єрності при збереженні", class: "form-check-label" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= form.submit "Зберегти локацію", class: "btn btn-primary px-4" %>
+    <%= link_to "Скасувати", places_path, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>

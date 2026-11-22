@@ -1,0 +1,108 @@
+<div class="mb-3">
+  <%= link_to places_path, class: "text-decoration-none" do %>
+    <i class="bi bi-arrow-left me-1"></i> Назад до списку локацій
+  <% end %>
+</div>
+
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-body">
+    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+      <div>
+        <span class="badge bg-secondary mb-2"><%= @place.category %></span>
+        <h1 class="h3 mb-1"><%= @place.name %></h1>
+        <p class="text-muted mb-0">
+          <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+          <%= @place.address %> (<%= @place.district&.name %>, рівень безпеки маршруту: <strong><%= @place.district&.route_safety_level %></strong>)
+        </p>
+      </div>
+
+      <div class="d-flex gap-2">
+        <%= link_to edit_place_path(@place), class: "btn btn-outline-primary btn-sm" do %>
+          <i class="bi bi-pencil me-1"></i> Редагувати локацію
+        <% end %>
+        <%= button_to @place, method: :delete, data: { turbo_confirm: "Видалити цю локацію?" }, class: "btn btn-outline-danger btn-sm" do %>
+          <i class="bi bi-trash me-1"></i> Видалити
+        <% end %>
+      </div>
+    </div>
+
+    <p class="mb-3"><%= @place.description.presence || "Додатковий опис відсутній." %></p>
+
+    <div class="row g-3 mb-3">
+      <div class="col-md-4">
+        <div class="p-3 bg-light rounded">
+          <div class="small text-muted">Координати GPS</div>
+          <div class="fw-semibold"><%= @place.latitude %>, <%= @place.longitude %></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 bg-light rounded">
+          <div class="small text-muted">Пандус</div>
+          <div class="fw-semibold"><%= @place.has_ramp ? "Наявний" : "Відсутній" %></div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 bg-light rounded">
+          <div class="small text-muted">Тактильна навігація (Брайль)</div>
+          <div class="fw-semibold"><%= @place.has_braille ? "Наявна" : "Відсутня" %></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <strong class="d-block mb-2">Підтримувані категорії доступності:</strong>
+      <% if @place.disability_types.any? %>
+        <div class="d-flex flex-wrap gap-2">
+          <% @place.disability_types.each do |dt| %>
+            <span class="badge bg-primary-subtle text-primary-emphasis px-3 py-2">
+              <%= dt.name %>
+            </span>
+          <% end %>
+        </div>
+      <% else %>
+        <span class="text-muted small">Категорії ще не вказано.</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow-sm border-0">
+  <div class="card-header bg-white d-flex justify-content-between align-items-center">
+    <span class="fw-semibold"><i class="bi bi-file-earmark-medical me-1 text-primary"></i> Технічний паспорт безбар'єрності (вкладений ресурс)</span>
+    <% if @place.accessibility_passport.present? %>
+      <div class="d-flex gap-2">
+        <%= link_to "Редагувати паспорт", edit_place_accessibility_passport_path(@place), class: "btn btn-sm btn-outline-primary" %>
+        <%= button_to "Видалити паспорт", place_accessibility_passport_path(@place), method: :delete, data: { turbo_confirm: "Видалити паспорт?" }, class: "btn btn-sm btn-outline-danger" %>
+      </div>
+    <% else %>
+      <%= link_to "Оформити паспорт", new_place_accessibility_passport_path(@place), class: "btn btn-sm btn-primary" %>
+    <% end %>
+  </div>
+
+  <div class="card-body">
+    <% if (passport = @place.accessibility_passport).present? %>
+      <table class="table table-bordered mb-0">
+        <tbody>
+          <tr>
+            <th class="w-50 bg-light">Кут нахилу пандуса</th>
+            <td><%= passport.ramp_angle.present? ? "#{passport.ramp_angle}°" : "Не виміряно" %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">Ширина дверного прорізу</th>
+            <td><%= passport.door_width_cm.present? ? "#{passport.door_width_cm} см" : "Не виміряно" %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">Наявність ліфта / підйомника</th>
+            <td><%= passport.has_elevator ? "Так" : "Ні" %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">Зауваження щодо небезпечних зливових жолобів</th>
+            <td><%= passport.hazard_gutters_note.presence || "Небезпечних жолобів не виявлено" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-muted mb-0">Для цієї локації технічний паспорт безбар’єрності ще не заповнено.</p>
+    <% end %>
+  </div>
+</div>
