@@ -1,0 +1,813 @@
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[35m (50.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-11-21 13:10:21.914747', '2026-11-21 13:10:21.914752') RETURNING "key" /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to CreatePlaces (20261121131010)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261121131010') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Started GET "/" for ::1 at 2026-11-21 15:12:54 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/railties-8.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/railties-8.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.7ms | GC: 0.0ms)
+Completed 200 OK in 840ms (Views: 194.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places" for ::1 at 2026-11-21 15:13:27 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Load (2.8ms)[0m  [1m[34mSELECT "places".* FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:9
+  Rendered places/index.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 50.9ms | GC: 0.0ms)
+Completed 200 OK in 1202ms (Views: 77.3ms | ActiveRecord: 4.5ms (1 query, 0 cached) | GC: 31.3ms)
+
+
+Started GET "/places/new" for ::1 at 2026-11-21 15:13:30 +0200
+Processing by PlacesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/new.html.erb within layouts/application
+  Rendered places/_form.html.erb (Duration: 396.5ms | GC: 0.0ms)
+  Rendered places/new.html.erb within layouts/application (Duration: 399.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 401.9ms | GC: 0.0ms)
+Completed 200 OK in 427ms (Views: 403.1ms | ActiveRecord: 1.1ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/new" for ::1 at 2026-11-21 15:13:47 +0200
+Processing by PlacesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/new.html.erb within layouts/application
+  Rendered places/_form.html.erb (Duration: 3.2ms | GC: 0.0ms)
+  Rendered places/new.html.erb within layouts/application (Duration: 3.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 6.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/places" for ::1 at 2026-11-21 15:15:37 +0200
+Processing by PlacesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "place" => {"name" => "Аптека \"Подорожник\"", "category" => "Аптека", "address" => "вул. Незалежності, 15, Івано-Франківськ", "latitude" => "48.9215", "longitude" => "24.7103", "has_ramp" => "1", "has_braille" => "1", "description" => "Пологий пандус із поручнями, кнопка виклику персоналу, табличка шрифтом Брайля."}, "commit" => "Create Place"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+  [1m[36mPlace Create (3.7ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at") VALUES ('Аптека "Подорожник"', 'Аптека', 'вул. Незалежності, 15, Івано-Франківськ', 48.9215, 24.7103, TRUE, TRUE, 'Пологий пандус із поручнями, кнопка виклику персоналу, табличка шрифтом Брайля.', '2026-11-21 13:15:37.122633', '2026-11-21 13:15:37.122633') RETURNING "id" /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+  [1m[36mTRANSACTION (36.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+Redirected to http://localhost:3000/places/1
+↳ app/controllers/places_controller.rb:28:in 'block (2 levels) in PlacesController#create'
+Completed 302 Found in 78ms (ActiveRecord: 40.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/1" for ::1 at 2026-11-21 15:15:37 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 1 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:63:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/_place.html.erb (Duration: 0.8ms | GC: 0.0ms)
+  Rendered places/show.html.erb within layouts/application (Duration: 37.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 39.4ms | GC: 0.0ms)
+Completed 200 OK in 109ms (Views: 41.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places" for ::1 at 2026-11-21 15:20:09 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:9
+  Rendered places/_place.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered places/index.html.erb within layouts/application (Duration: 5.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 7.6ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/new" for ::1 at 2026-11-21 15:20:10 +0200
+Processing by PlacesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/new.html.erb within layouts/application
+  Rendered places/_form.html.erb (Duration: 6.4ms | GC: 0.0ms)
+  Rendered places/new.html.erb within layouts/application (Duration: 7.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | GC: 0.0ms)
+Completed 200 OK in 21ms (Views: 10.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/places" for ::1 at 2026-11-21 15:21:11 +0200
+Processing by PlacesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "place" => {"name" => "Обласна клінічна лікарня", "category" => "Медичний заклад", "address" => "вул. Федьковича, 91, Івано-Франківськ", "latitude" => "48.9382", "longitude" => "24.6934", "has_ramp" => "1", "has_braille" => "0", "description" => "Працює ліфт-підйомник; \r\nОбережно: глибокий водостічний жолоб біля заїзду з тротуару"}, "commit" => "Create Place"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+  [1m[36mPlace Create (6.7ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at") VALUES ('Обласна клінічна лікарня', 'Медичний заклад', 'вул. Федьковича, 91, Івано-Франківськ', 48.9382, 24.6934, TRUE, FALSE, 'Працює ліфт-підйомник; 
+Обережно: глибокий водостічний жолоб біля заїзду з тротуару', '2026-11-21 13:21:11.882450', '2026-11-21 13:21:11.882450') RETURNING "id" /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+Redirected to http://localhost:3000/places/2
+↳ app/controllers/places_controller.rb:28:in 'block (2 levels) in PlacesController#create'
+Completed 302 Found in 28ms (ActiveRecord: 7.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/2" for ::1 at 2026-11-21 15:21:11 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "2"}
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 2 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:63:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/_place.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered places/show.html.erb within layouts/application (Duration: 2.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 5.6ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places" for ::1 at 2026-11-21 15:21:15 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:9
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/index.html.erb within layouts/application (Duration: 4.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 7.1ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/new" for ::1 at 2026-11-21 15:21:19 +0200
+Processing by PlacesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/new.html.erb within layouts/application
+  Rendered places/_form.html.erb (Duration: 3.4ms | GC: 0.0ms)
+  Rendered places/new.html.erb within layouts/application (Duration: 4.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 6.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/places" for ::1 at 2026-11-21 15:22:14 +0200
+Processing by PlacesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "place" => {"name" => "ЦНАП м. Івано-Франківська", "category" => "Адмінпослуги", "address" => "вул. Незалежності, 9, Івано-Франківськ", "latitude" => "48.9221", "longitude" => "24.7098", "has_ramp" => "1", "has_braille" => "1", "description" => "Безбар'єрний вхід без порогів, тактильна плитка на підході."}, "commit" => "Create Place"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+  [1m[36mPlace Create (6.1ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at") VALUES ('ЦНАП м. Івано-Франківська', 'Адмінпослуги', 'вул. Незалежності, 9, Івано-Франківськ', 48.9221, 24.7098, TRUE, TRUE, 'Безбар''єрний вхід без порогів, тактильна плитка на підході.', '2026-11-21 13:22:14.105899', '2026-11-21 13:22:14.105899') RETURNING "id" /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:27:in 'block in PlacesController#create'
+Redirected to http://localhost:3000/places/3
+↳ app/controllers/places_controller.rb:28:in 'block (2 levels) in PlacesController#create'
+Completed 302 Found in 26ms (ActiveRecord: 6.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/3" for ::1 at 2026-11-21 15:22:14 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "3"}
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 3 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:63:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/show.html.erb within layouts/application (Duration: 1.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 3.9ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Create (16.2ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at") VALUES ('Аптека «АНЦ»', 'Аптека', 'вул. Галицька, 22, ІФ', NULL, NULL, TRUE, FALSE, NULL, '2026-11-22 11:54:04.429081', '2026-11-22 11:54:04.429081') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (45.7ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Create (0.9ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at") VALUES ('Міська поліклініка №2', 'Медицина', 'вул. Довга, 42, ІФ', NULL, NULL, TRUE, TRUE, NULL, '2026-11-22 11:54:22.038679', '2026-11-22 11:54:22.038679') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."id" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Load (0.4ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 5 LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Update (0.8ms)[0m  [1m[33mUPDATE "places" SET "description" = 'Оновлений опис доступності', "updated_at" = '2026-11-22 11:54:26.517440' WHERE "places"."id" = 5 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Destroy (0.7ms)[0m  [1m[31mDELETE FROM "places" WHERE "places"."id" = 5 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Create (1.1ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at") VALUES ('Залізничний вокзал ІФ', 'Транспорт', 'пл. Привокзальна, 1, ІФ', NULL, NULL, TRUE, TRUE, NULL, '2026-11-22 11:58:55.980178', '2026-11-22 11:58:55.980178') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to AddHazardWarningToPlaces (20261122120155)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (22.2ms)[0m  [1m[35mALTER TABLE "places" ADD "hazard_warning" varchar /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122120155') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to AddPhotoUrlToPlaces (20261122120256)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (7.6ms)[0m  [1m[35mALTER TABLE "places" ADD "photo_url" varchar /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122120256') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to RenamePhotoUrlInPlaces (20261122120346)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (14.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar, "ramp_photo_url" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","ramp_photo_url")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","photo_url" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar, "ramp_photo_url" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","ramp_photo_url")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","ramp_photo_url" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122120346') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Reverting RenamePhotoUrlInPlaces (20261122120346)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar, "photo_url" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","photo_url")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","ramp_photo_url" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar, "photo_url" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","photo_url")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","photo_url" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20261122120346' /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Reverting AddPhotoUrlToPlaces (20261122120256)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar, "photo_url" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","photo_url")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning","photo_url" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20261122120256' /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Reverting AddHazardWarningToPlaces (20261122120155)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "hazard_warning" varchar) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","hazard_warning" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (0.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20261122120155' /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to CreateDistricts (20261122121335)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "districts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "route_safety_level" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122121335') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Migrating to AddDistrictToPlaces (20261122121358)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "district_id" integer NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mDistrict Create (1.1ms)[0m  [1m[32mINSERT INTO "districts" ("name", "route_safety_level", "created_at", "updated_at") VALUES ('Центральна частина ІФ (Стометрівка)', 'Високий (понижені бордюри)', '2026-11-22 12:20:52.504139', '2026-11-22 12:20:52.504139') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to AddDistrictToPlaces (20261122121358)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "district_id" integer NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Migrating to AddDistrictToPlaces (20261122121358)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (6.0ms)[0m  [1m[35mALTER TABLE "places" ADD "district_id" integer /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_places_on_district_id" ON "places" ("district_id") /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aplaces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "district_id" integer) /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "tindex_aplaces_on_district_id" ON "aplaces" ("district_id") /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "aplaces" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","district_id")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","district_id" FROM "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "places" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "places" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "address" varchar, "latitude" float, "longitude" float, "has_ramp" boolean, "has_braille" boolean, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "district_id" integer, CONSTRAINT "fk_rails_1a834caf2f"
+FOREIGN KEY ("district_id")
+  REFERENCES "districts" ("id")
+) /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_places_on_district_id" ON "places" ("district_id") /*application='BarrierFreeIf'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "places" ("id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","district_id")
+                     SELECT "id","name","category","address","latitude","longitude","has_ramp","has_braille","description","created_at","updated_at","district_id" FROM "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aplaces" /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0 /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122121358') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Migrating to CreateAccessibilityPassports (20261122121407)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (11.6ms)[0m  [1m[35mCREATE TABLE "accessibility_passports" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "ramp_angle" float, "door_width_cm" integer, "has_elevator" boolean, "hazard_gutters_note" text, "place_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b867656128"
+FOREIGN KEY ("place_id")
+  REFERENCES "places" ("id")
+) /*application='BarrierFreeIf'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE INDEX "index_accessibility_passports_on_place_id" ON "accessibility_passports" ("place_id") /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122121407') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Migrating to CreateDisabilityTypes (20261122121416)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "disability_types" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "icon_code" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122121416') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+Migrating to CreateJoinTableDisabilityTypesPlaces (20261122121425)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "disability_types_places" ("disability_type_id" integer NOT NULL, "place_id" integer NOT NULL) /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20261122121425') RETURNING "version" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+  [1m[36mDistrict Load (0.3ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."id" ASC LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Create (1.5ms)[0m  [1m[32mINSERT INTO "places" ("name", "category", "address", "latitude", "longitude", "has_ramp", "has_braille", "description", "created_at", "updated_at", "district_id") VALUES ('Аптека «Доброго Дня»', 'Аптека', 'вул. Січових Стрільців, 10, ІФ', 48.9201, 24.7115, TRUE, TRUE, NULL, '2026-11-22 12:26:16.623257', '2026-11-22 12:26:16.623257', 1) RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mAccessibilityPassport Create (0.9ms)[0m  [1m[32mINSERT INTO "accessibility_passports" ("ramp_angle", "door_width_cm", "has_elevator", "hazard_gutters_note", "place_id", "created_at", "updated_at") VALUES (5.5, 95, TRUE, 'Небезпечні водостічні жолоби на підході відсутні', 7, '2026-11-22 12:26:16.734331', '2026-11-22 12:26:16.734331') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mAccessibilityPassport Load (0.1ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" = 7 LIMIT 1 /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mDisabilityType Create (0.7ms)[0m  [1m[32mINSERT INTO "disability_types" ("name", "icon_code", "created_at", "updated_at") VALUES ('Користувачі крісел колісних', 'wheelchair', '2026-11-22 12:26:16.887481', '2026-11-22 12:26:16.887481') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mDisabilityTypesPlace Create (0.1ms)[0m  [1m[32mINSERT INTO "disability_types_places" ("disability_type_id", "place_id") VALUES (1, 7) /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mDisabilityType Create (0.6ms)[0m  [1m[32mINSERT INTO "disability_types" ("name", "icon_code", "created_at", "updated_at") VALUES ('Порушення зору (шрифт Брайля)', 'braille', '2026-11-22 12:26:16.903679', '2026-11-22 12:26:16.903679') RETURNING "id" /*application='BarrierFreeIf'*/[0m
+  [1m[36mDisabilityTypesPlace Create (0.1ms)[0m  [1m[32mINSERT INTO "disability_types_places" ("disability_type_id", "place_id") VALUES (2, 7) /*application='BarrierFreeIf'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='BarrierFreeIf'*/[0m
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" INNER JOIN "disability_types_places" ON "places"."id" = "disability_types_places"."place_id" WHERE "disability_types_places"."disability_type_id" = 1 /* loading for pp */ LIMIT 11 /*application='BarrierFreeIf'*/[0m
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Started GET "/places/3" for ::1 at 2026-11-22 21:25:20 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (25.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "3"}
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 3 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:63:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/_place.html.erb (Duration: 1.0ms | GC: 0.0ms)
+  Rendered places/show.html.erb within layouts/application (Duration: 344.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 476.9ms | GC: 0.0ms)
+Completed 200 OK in 3129ms (Views: 818.9ms | ActiveRecord: 5.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-11-22 21:25:26 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/railties-8.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/railties-8.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 122ms (Views: 3.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-11-22 21:25:30 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/railties-8.1.4.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby40-x64/lib/ruby/gems/4.0.0/gems/railties-8.1.4.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/" for ::1 at 2026-11-22 21:25:36 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:9
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/index.html.erb within layouts/application (Duration: 7.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | GC: 0.0ms)
+Completed 200 OK in 35ms (Views: 9.3ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/1" for ::1 at 2026-11-22 21:25:50 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 1 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:63:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/_place.html.erb (Duration: 0.1ms | GC: 0.0ms)
+  Rendered places/show.html.erb within layouts/application (Duration: 1.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.7ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 3.7ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Using vips to process variants requires the libvips library. Please install libvips using the instructions on the libvips website.
+Started GET "/" for 127.0.0.1 at 2026-11-22 23:34:47 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BarrierFreeIf'*/[0m
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.3ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.5ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.2ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 896.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 919.1ms | GC: 0.0ms)
+Completed 200 OK in 1198ms (Views: 933.6ms | ActiveRecord: 11.8ms (7 queries, 0 cached) | GC: 15.6ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2026-11-22 23:34:49 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/places/1" for 127.0.0.1 at 2026-11-22 23:35:15 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 1 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mAccessibilityPassport Load (0.3ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" = 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" = 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/show.html.erb within layouts/application (Duration: 3.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | GC: 0.0ms)
+Completed 200 OK in 26ms (Views: 5.7ms | ActiveRecord: 0.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/2" for 127.0.0.1 at 2026-11-22 23:35:21 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "2"}
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 2 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" = 2 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" = 2 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/show.html.erb within layouts/application (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 20ms (Views: 3.9ms | ActiveRecord: 0.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/3" for 127.0.0.1 at 2026-11-22 23:35:33 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "3"}
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 3 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" = 3 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" = 3 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/show.html.erb within layouts/application (Duration: 1.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 200 OK in 23ms (Views: 4.0ms | ActiveRecord: 0.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/accessible" for 127.0.0.1 at 2026-11-22 23:35:45 +0200
+Processing by PlacesController#accessible as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" WHERE "places"."has_ramp" = TRUE AND "places"."has_braille" = TRUE /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."has_ramp" = TRUE AND "places"."has_braille" = TRUE ORDER BY "places"."name" ASC /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 7, 6, 3) /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 7, 6, 3) /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 25.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.4ms | GC: 0.0ms)
+Completed 200 OK in 35ms (Views: 27.6ms | ActiveRecord: 1.1ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/districts" for 127.0.0.1 at 2026-11-22 23:35:47 +0200
+Processing by DistrictsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering districts/index.html.erb within layouts/application
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='districts'*/[0m
+  ↳ app/views/districts/index.html.erb:4
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."district_id" = 1 /*action='index',application='BarrierFreeIf',controller='districts'*/[0m
+  ↳ app/views/districts/index.html.erb:4
+  Rendered districts/index.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | GC: 0.0ms)
+Completed 200 OK in 25ms (Views: 18.0ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places" for 127.0.0.1 at 2026-11-22 23:35:50 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.3ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 25.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.4ms | GC: 0.0ms)
+Completed 200 OK in 34ms (Views: 27.2ms | ActiveRecord: 1.2ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/new" for 127.0.0.1 at 2026-11-22 23:35:53 +0200
+Processing by PlacesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/new.html.erb within layouts/application
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='new',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/_form.html.erb:34
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" ORDER BY "disability_types"."name" ASC /*action='new',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/_form.html.erb:78
+  Rendered places/_form.html.erb (Duration: 310.1ms | GC: 0.0ms)
+  Rendered places/new.html.erb within layouts/application (Duration: 313.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 314.7ms | GC: 0.0ms)
+Completed 200 OK in 455ms (Views: 315.3ms | ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places" for 127.0.0.1 at 2026-11-22 23:36:11 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.2ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 27.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 28.9ms | GC: 0.0ms)
+Completed 200 OK in 36ms (Views: 28.7ms | ActiveRecord: 1.2ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2026-11-22 23:55:39 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.2ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 33.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 36.1ms | GC: 0.0ms)
+Completed 200 OK in 46ms (Views: 33.7ms | ActiveRecord: 3.9ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/new" for 127.0.0.1 at 2026-11-22 23:57:08 +0200
+Processing by PlacesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/new.html.erb within layouts/application
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='new',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/_form.html.erb:34
+  [1m[36mDisabilityType Load (0.1ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" ORDER BY "disability_types"."name" ASC /*action='new',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/_form.html.erb:78
+  Rendered places/_form.html.erb (Duration: 12.0ms | GC: 0.0ms)
+  Rendered places/new.html.erb within layouts/application (Duration: 12.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | GC: 0.0ms)
+Completed 200 OK in 22ms (Views: 15.1ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2026-11-22 23:58:45 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.1ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 28.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 30.9ms | GC: 0.0ms)
+Completed 200 OK in 38ms (Views: 30.8ms | ActiveRecord: 1.1ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/7" for 127.0.0.1 at 2026-11-22 23:58:49 +0200
+Processing by PlacesController#show as HTML
+  Parameters: {"id" => "7"}
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."id" = 7 LIMIT 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" = 7 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" = 7 /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  [1m[36mDisabilityType Load (0.1ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='show',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/controllers/places_controller.rb:67:in 'PlacesController#set_place'
+  Rendering layout layouts/application.html.erb
+  Rendering places/show.html.erb within layouts/application
+  Rendered places/show.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 4.2ms | ActiveRecord: 0.7ms (5 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2026-11-23 00:00:00 +0200
+Processing by PlacesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" ORDER BY "places"."name" ASC /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.2ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 4, 7, 6, 2, 3) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.2ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='index',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 25.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.7ms | GC: 0.0ms)
+Completed 200 OK in 35ms (Views: 27.5ms | ActiveRecord: 1.2ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/districts" for 127.0.0.1 at 2026-11-23 00:00:01 +0200
+Processing by DistrictsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering districts/index.html.erb within layouts/application
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='districts'*/[0m
+  ↳ app/views/districts/index.html.erb:4
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."district_id" = 1 /*action='index',application='BarrierFreeIf',controller='districts'*/[0m
+  ↳ app/views/districts/index.html.erb:4
+  Rendered districts/index.html.erb within layouts/application (Duration: 7.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 10.5ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/places/accessible" for 127.0.0.1 at 2026-11-23 00:00:02 +0200
+Processing by PlacesController#accessible as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering places/index.html.erb within layouts/application
+  [1m[36mPlace Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "places" WHERE "places"."has_ramp" = TRUE AND "places"."has_braille" = TRUE /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:5
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:19
+  [1m[36mPlace Load (0.3ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."has_ramp" = TRUE AND "places"."has_braille" = TRUE ORDER BY "places"."name" ASC /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDistrict Load (0.1ms)[0m  [1m[34mSELECT "districts".* FROM "districts" WHERE "districts"."id" = 1 /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mAccessibilityPassport Load (0.2ms)[0m  [1m[34mSELECT "accessibility_passports".* FROM "accessibility_passports" WHERE "accessibility_passports"."place_id" IN (1, 7, 6, 3) /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mHABTM_DisabilityTypes Load (0.1ms)[0m  [1m[34mSELECT "disability_types_places".* FROM "disability_types_places" WHERE "disability_types_places"."place_id" IN (1, 7, 6, 3) /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  [1m[36mDisabilityType Load (0.1ms)[0m  [1m[34mSELECT "disability_types".* FROM "disability_types" WHERE "disability_types"."id" IN (1, 2) /*action='accessible',application='BarrierFreeIf',controller='places'*/[0m
+  ↳ app/views/places/index.html.erb:33
+  Rendered places/index.html.erb within layouts/application (Duration: 29.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.5ms | GC: 0.0ms)
+Completed 200 OK in 37ms (Views: 31.2ms | ActiveRecord: 1.3ms (7 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/districts" for 127.0.0.1 at 2026-11-23 00:00:05 +0200
+Processing by DistrictsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering districts/index.html.erb within layouts/application
+  [1m[36mDistrict Load (0.2ms)[0m  [1m[34mSELECT "districts".* FROM "districts" ORDER BY "districts"."name" ASC /*action='index',application='BarrierFreeIf',controller='districts'*/[0m
+  ↳ app/views/districts/index.html.erb:4
+  [1m[36mPlace Load (0.2ms)[0m  [1m[34mSELECT "places".* FROM "places" WHERE "places"."district_id" = 1 /*action='index',application='BarrierFreeIf',controller='districts'*/[0m
+  ↳ app/views/districts/index.html.erb:4
+  Rendered districts/index.html.erb within layouts/application (Duration: 7.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 9.6ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
